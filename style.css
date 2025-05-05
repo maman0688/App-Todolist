@@ -1,0 +1,353 @@
+:root {
+  --bg: #ffffff;
+  --text: #1f1f1f;
+  --card: #f3f4f6;
+  --accent: #3b82f6;
+  --done: #22c55e;
+}
+
+body.dark {
+  --bg: #1f2937;
+  --text: #f3f4f6;
+  --card: #374151;
+  --accent: #60a5fa;
+  --done: #10b981;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background 0.3s, color 0.3s;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.app {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 28px;
+}
+
+#toggleDark {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#toggleDark:hover {
+  transform: rotate(15deg);
+}
+
+.input-section {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  animation: slideIn 0.5s ease-out;
+}
+
+.input-section input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  font-size: 16px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.input-section button {
+  padding: 12px;
+  font-size: 18px;
+  background: var(--accent);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.input-section button:hover {
+  background: #2563eb;
+}
+
+.filter-section {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.filter-section button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-section button.active {
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+  transform: scale(1.05);
+}
+
+ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+li {
+  background: var(--bg);
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeInUp 0.4s ease-in;
+  border-left: 4px solid transparent;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+li.done {
+  text-decoration: line-through;
+  color: gray;
+  border-left: 4px solid var(--done);
+}
+
+.task-content {
+  flex: 1;
+  cursor: pointer;
+}
+
+li span:hover {
+  color: var(--accent);
+}
+
+.task-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+  color: var(--accent);
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.task-actions button:hover {
+  transform: scale(1.2);
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .app {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  .input-section input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .input-section button {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .filter-section button {
+    padding: 6px;
+    font-size: 13px;
+  }
+
+  li {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .task-actions button {
+    font-size: 14px;
+  }
+}
+
+.search-section {
+  margin: 15px 0;
+}
+
+.search-section input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.progress-container {
+  margin: 10px 0;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  position: relative;
+}
+
+#progressBar {
+  height: 10px;
+  background: var(--accent);
+  width: 0%;
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+#progressText {
+  font-size: 12px;
+  color: var(--text);
+  text-align: right;
+  margin-top: 5px;
+}
+
+.deadline {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #888;
+}
+
+.deadline.overdue {
+  color: red;
+  font-weight: bold;
+}
+
+.deadline.due-today {
+  color: orange;
+  font-weight: bold;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #444;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  z-index: 9999;
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  .input-section {
+    flex-direction: column;
+  }
+
+  .input-section input,
+  .input-section button {
+    width: 100%;
+  }
+
+  .input-section input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .input-section button {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .filter-section {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter-section button {
+    flex: 1 1 48%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  li {
+    font-size: 14px;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .task-actions {
+    margin-top: 8px;
+    align-self: flex-end;
+  }
+
+  .task-actions button {
+    font-size: 14px;
+  }
+
+  .search-section input {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
